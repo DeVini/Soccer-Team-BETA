@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="sessionFactory">
+	
+		<!-- O nome da classe de um hibernate que permite gerar SQL otimizado para um banco de dados relacional especifico
+		ou seja o dialeto que ele vai usar -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		
+		<!-- 	Fonte de dados Nome JNDI  -->
+		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/datasource</property>
+		
+		<!-- 	Qualifique os nomes de tabela não qualificados com o esquema / espaço de tabela fornecido no SQL gerado.  -->
+		<property name="hibernate.default_schema">public</property>
+		
+		<!-- Fornecer uma estratégia personalizada para o escopo da "atual"  -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- O classname de a TransactionFactorypara usar com Hibernate TransactionAPI (padrão para JDBCTransactionFactory). -->		
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		
+		<!-- Selecione um personalizado org.hibernate.jdbc.Batcher.
+		 A maioria dos aplicativos não precisará desta propriedade de configuração. -->
+		<property name="hibernate.jdbc.factory_class">org.hibernate.jdbc.NonBatchingBatcherFactory</property>
+		
+		<!--  	Um valor diferente de zero permite o uso de atualizações em lote JDBC2 pelo Hibernate. -->
+		<property name="hibernate.jdbc.batch_size">100</property>
+		
+		<!--  -->
+		<property name="hibernate.cache.use_second_cache">true</property>
+		
+		<!--Se ativado, a sessão será fechada automaticamente durante a fase de conclusão posterior da transação. 
+		O gerenciamento de contexto de sessão integrado e automático é o preferido,   -->
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		
+		<!--  Valida ou exporta automaticamente o esquema DDL para o banco de dados quando ele SessionFactoryé criado. Com create-drop,
+		 o esquema do banco de dados será descartado quando o SessionFactory for fechado explicitamente.-->
+		<property name="hibernate.hbm2ddl.auto" >update</property>
+		<!--  -->
+		<property name="hibernate.show_sql">false</property>
+		<!--  -->
+		<property name="hibernate.format_sql">true</property>
+		<!--  -->
+		<property name="hibernate.generate_statistics">false</property>
+		<!--  -->
+		<property name="hibernate.connection.autocommit">false</property>
+		<!--  -->
+		<property name="hibernate.connection.pool_size">50</property>
+		
+
+		 <mapping class="br.com.project.model.classes.Entidade" />
+		 <mapping class="br.com.project.model.classes.Pais" />
+		 <mapping class="br.com.project.model.classes.Estado" />
+		 <mapping class="br.com.project.model.classes.Cidade" />
+			
+	</session-factory>
+</hibernate-configuration>
