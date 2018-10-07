@@ -63,7 +63,11 @@
 		<param-value>smoothness</param-value>
 	</context-param>
 
-
+	<filter>
+		<filter-name>conexaoFilter</filter-name>
+		<filter-class>br.com.project.filter.FilterOpenSessionInView</filter-class>
+	</filter>
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -105,6 +109,7 @@
 		<url-pattern>*.jsf</url-pattern>
 	</filter-mapping>
 
+
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
@@ -112,6 +117,15 @@
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
+	
+	<listener>
+		<listener-class>br.com.project.listener.ContextLoaderListenerSoccerTeam</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>br.com.project.listener.CustomListener</listener-class>
+	</listener>
+	
 	
 	<resource-ref>
 		<description>DataSource datasource</description>
