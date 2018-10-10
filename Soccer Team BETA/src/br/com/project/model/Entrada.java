@@ -8,6 +8,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import org.hibernate.envers.Audited;
 
+import br.com.project.model.enums.TipoEntrada;
+
 @Audited
 @Entity
 @Table(name = "entradas")

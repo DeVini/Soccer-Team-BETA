@@ -17,6 +17,7 @@ import javax.persistence.Version;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.envers.Audited;
 import br.com.project.annotation.IdentificaCampoPesquisa;
+import br.com.project.model.enums.TipoCampeonato;
 
 @Audited
 @Entity

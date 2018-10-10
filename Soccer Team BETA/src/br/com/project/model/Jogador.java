@@ -26,6 +26,8 @@ import javax.persistence.Version;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.envers.Audited;
 import br.com.project.annotation.IdentificaCampoPesquisa;
+import br.com.project.model.enums.Posicao;
+import br.com.project.model.enums.TipoSanguineo;
 import br.com.project.util.all.Imagem;
 
 @Audited
@@ -74,10 +76,57 @@ public class Jogador implements Serializable{
 	    joinColumns = @JoinColumn(name = "jogador_id"))
 	@Enumerated(EnumType.STRING)
 	private Set<Posicao> posicoes;
+	
 	@ManyToMany
 	@JoinTable(name = "jogador_contato", joinColumns = @JoinColumn(name = "jogador_id"),
 	inverseJoinColumns = @JoinColumn(name = "contato_id"))
 	private Set<Contato> contatos;
+	
+	
+	@Column(nullable = false)
+	private int desarme;
+	@Column(nullable = false)
+	private int marcacao;
+	@Column(nullable = false)
+	private int forca;
+	@Column(nullable = false)
+	private int velocidade;
+	@Column(nullable = false)
+	private int drible;
+	@Column(nullable = false)
+	private int finalizacao;
+	@Column(nullable = false)
+	private int chute;
+	@Column(nullable = false)
+	private int agilidade;
+	@Column(nullable = false)
+	private int cabeceio;
+	@Column(nullable = false)
+	private int inteligencia;
+	@Column(nullable = false)
+	private int passe;
+	@Column(nullable = false)
+	private int lancamento;
+	@Column(nullable = false)
+	private int dominio;
+	@Column(nullable = false)
+	private int pernaD;
+	@Column(nullable = false)
+	private int pernaE;
+	@Column(nullable = false)
+	private int salto;
+	@Column(nullable = false)
+	private int penalti;
+	@Column(nullable = false)
+	private int falta;
+	@Column(nullable = true)
+	private int reflexo;
+	@Column(nullable = true)
+	private int eslaticidade;
+	@Column(nullable = true)
+	private int saidaJogo;
+	
+	
 	
 	@Version
 	@Column(name = "versionNum" )
