@@ -17,7 +17,9 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import br.com.framework.hibernate.session.HibernateUtil;
+import br.com.framework.utils.UtilFramework;
 import br.com.project.listener.ContextLoaderListenerSoccerTeam;
+import br.com.project.model.Usuario;
 
 @WebFilter(filterName = "conexaoFilter" )
 public class FilterOpenSessionInView extends DelegatingFilterProxy implements Serializable{
@@ -40,7 +42,12 @@ public class FilterOpenSessionInView extends DelegatingFilterProxy implements Se
 		try{
 			request.setCharacterEncoding("UTF-8");
 			HttpSession session = ((HttpServletRequest) request).getSession();
-				
+			Usuario usuarioLogadoSessao = (Usuario) session.getAttribute("userLogadoSessao");
+			
+			if(usuarioLogadoSessao != null){
+				UtilFramework.getThreadLocal().set(usuarioLogadoSessao.getId());
+			}
+			
 			sf.getCurrentSession().beginTransaction();
 			filterChain.doFilter(request, response);
 			transactionManager.commit(status);

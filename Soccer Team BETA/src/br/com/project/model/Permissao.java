@@ -1,5 +1,5 @@
 package br.com.project.model;
 
-public enum Permissoes {
+public enum Permissao {
 
 }

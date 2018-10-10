@@ -1,5 +1,5 @@
 package br.com.project.model;
 
-public class Habilidade {
+public enum TipoSanguineo {
 
 }

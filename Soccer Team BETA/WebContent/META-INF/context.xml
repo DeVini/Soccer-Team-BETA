@@ -10,7 +10,7 @@
 	 	maxIdle="10"
 	 	maxWait="10"
 	 	initialSize="10"
-	 	driverClassName=""
+	 	driverClassName="com.mysql.jdbc.Driver"
 	 	validationQuery="SELECT 'ok'"
 	 	testWhileIdle="true"
 	 	testOnBorrow="true"
@@ -21,6 +21,6 @@
 	 	antiResourceLocking="false"
 	 	username="root"
 	 	password="root"
-		url=""/>
+		url="jdbc:mysql://localhost:3306/soccerteam?autoReconnect=true"/>
 		 
 </Context>

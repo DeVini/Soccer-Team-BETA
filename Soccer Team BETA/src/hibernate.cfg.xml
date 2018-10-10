@@ -7,13 +7,13 @@
 	
 		<!-- O nome da classe de um hibernate que permite gerar SQL otimizado para um banco de dados relacional especifico
 		ou seja o dialeto que ele vai usar -->
-		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		
 		<!-- 	Fonte de dados Nome JNDI  -->
 		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/datasource</property>
 		
 		<!-- 	Qualifique os nomes de tabela não qualificados com o esquema / espaço de tabela fornecido no SQL gerado.  -->
-		<property name="hibernate.default_schema">public</property>
+		<!--  <property name="hibernate.default_schema">public</property> -->
 		
 		<!-- Fornecer uma estratégia personalizada para o escopo da "atual"  -->
 		<property name="hibernate.current_session_context_class">thread</property>
@@ -37,9 +37,9 @@
 		
 		<!--  Valida ou exporta automaticamente o esquema DDL para o banco de dados quando ele SessionFactoryé criado. Com create-drop,
 		 o esquema do banco de dados será descartado quando o SessionFactory for fechado explicitamente.-->
-		<property name="hibernate.hbm2ddl.auto" >update</property>
+		<property name="hibernate.hbm2ddl.auto" >create</property>
 		<!--  -->
-		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.show_sql">true</property>
 		<!--  -->
 		<property name="hibernate.format_sql">true</property>
 		<!--  -->
@@ -50,10 +50,20 @@
 		<property name="hibernate.connection.pool_size">50</property>
 		
 
-		 <mapping class="br.com.project.model.classes.Entidade" />
-		 <mapping class="br.com.project.model.classes.Pais" />
-		 <mapping class="br.com.project.model.classes.Estado" />
-		 <mapping class="br.com.project.model.classes.Cidade" />
-			
+		 <mapping class="br.com.project.model.Competicao" />
+		  <mapping class="br.com.project.model.Financeiro" />
+		 <mapping class="br.com.project.model.Contato" />
+		 <mapping class="br.com.project.model.Entrada" />
+		 <mapping class="br.com.project.model.Evento" />
+		 <mapping class="br.com.project.model.GolJogador" />
+		 <mapping class="br.com.project.model.Jogador" />
+		 <mapping class="br.com.project.model.Jogo" />
+		 <mapping class="br.com.project.model.Liga" />
+		 <mapping class="br.com.project.model.Saida" />
+		 <mapping class="br.com.project.model.Time" />
+		 <mapping class="br.com.project.model.Treino" />
+		 <mapping class="br.com.project.model.Usuario" />
+	 	<mapping class="br.com.project.model.InformacaoRevisao" />
+		 
 	</session-factory>
 </hibernate-configuration>
