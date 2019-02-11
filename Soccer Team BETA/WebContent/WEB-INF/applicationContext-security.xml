@@ -13,26 +13,33 @@
 			access-denied-page="/error/acessoNegado.xhtml" 
 			use-expressions="true">
 	  		
-	   <intercept-url pattern="/cadastro/cad_permissao.jsf" 
-	    access="hasAnyRole('ADMIN')" method="POST"/>
+	  	   
+	   <!-- <intercept-url pattern="/cadastro/cad_permissao.jsf" 
+	    access="hasAnyRole('ADMIN')" method="POST"/>-->
+	    
+	    <intercept-url pattern="/cadastro/meusDados.jsf" 
+	    access="isAuthenticated() and hasAnyRole('USER') or hasAnyRole('ADMIN') or hasAnyRole('GERENTE') or hasAnyRole('COMISSAO_TECNICA')" />
+	    
+	       <intercept-url pattern="/cadastro/cad_users.jsf" 
+	    access="isAuthenticated() and hasAnyRole('ADMIN')" />
 	    
 	   <intercept-url pattern="/resources/components/**" 
-	   access="isAuthenticated() and hasAnyRole('USER')"/> 	
+	   access="isAuthenticated() and hasAnyRole('USER') or hasAnyRole('ADMIN') or hasAnyRole('GERENTE') or hasAnyRole('COMISSAO_TECNICA')"/> 	
 	   
-	   <intercept-url pattern="/resources/**" 
-	   access="isAuthenticated() and hasAnyRole('USER')"/>
+	   <!--  <intercept-url pattern="/resources/**" 
+	   access="isAuthenticated() and hasAnyRole('ADMIN')"/>-->
 	   
 	   <intercept-url pattern="/restrito/**" 
-		access="isAuthenticated() and hasAnyRole('USER')"/>
+		access="isAuthenticated() and hasAnyRole('USER') or hasAnyRole('ADMIN') or hasAnyRole('GERENTE') or hasAnyRole('COMISSAO_TECNICA') "/>
 		
 		<intercept-url pattern="/error/**" 
 		access="isAnonymous() or isAuthenticated() or !isAuthenticated()"/>
 		
 		<intercept-url pattern="/templates/**"
-		 access="isAuthenticated() and hasAnyRole('USER')"/>
+		 access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		 
-		 <intercept-url pattern="/cadastro/**" 
-		access="isAuthenticated() and hasAnyRole('USER')"/>
+		  <intercept-url pattern="/cadastro/**" 
+		access="isAuthenticated() and hasAnyRole('USER') or hasAnyRole('ADMIN') or hasAnyRole('GERENTE') or hasAnyRole('COMISSAO_TECNICA')"/> 
 		
 		<intercept-url pattern="/publico/**" access="permitAll" /> 
 		
@@ -60,9 +67,15 @@
 		 		<password-encoder hash="plaintext"/>
 		 		<jdbc-user-service data-source-ref="springDataSource"
 		 		
-		 		users-by-username-query= " "
+		 		users-by-username-query= "select username as username,
+								        password as password,'true' as enable
+								        from usuarios
+								        where upper(username) = upper(?) "
 		 		
-		 		authorities-by-username-query= " "/>
+		 		authorities-by-username-query= "select username as username,
+										permissao as authority
+										from usuarios 
+										where upper(username) = upper(?) "/>
 		 </authentication-provider>
 	</authentication-manager>
 

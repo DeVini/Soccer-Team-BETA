@@ -28,4 +28,9 @@ public class DateUtil implements Serializable{
 		sb.append(df.format(data));
 		return sb.toString();
 	}
+	
+	public static String formatDateString(Date data){
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		return formato.format(data);
+	}
 }

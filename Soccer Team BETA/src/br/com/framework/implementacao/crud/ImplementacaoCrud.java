@@ -45,7 +45,6 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		validaSessionFactory();
 		sessionFactory.getCurrentSession().save(obj);
 		executeFlushSession();
-
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	public List<T> findList(Class<T> entidade) throws Exception {
 		validaSessionFactory();
 		StringBuilder query = new StringBuilder();
-		query.append(" select distinct(entity) from").append(entidade.getSimpleName()).append(" entity ");
+		query.append(" select distinct(entity) from ").append(entidade.getSimpleName()).append(" entity ");
 		List<T> lista = sessionFactory.getCurrentSession().createQuery(query.toString()).list();
 		return lista;
 	}
@@ -115,7 +114,8 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		lista = sessionFactory.getCurrentSession().createQuery(s).list();
 		return lista;
 	}
-
+	
+	
 	@Override
 	public void executeUpdateQueryDinamica(String s) throws Exception {
 		validaSessionFactory();
@@ -196,16 +196,17 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	@Override
 	public List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, 
 			int maximoResultado) throws Exception {
-
+		
 		List<T> lista = new ArrayList<T>();
 		lista = sessionFactory.getCurrentSession().createQuery(query).setFirstResult(iniciaNoRegistro)
 				.setMaxResults(maximoResultado).list();
+		System.out.println("find");
 		return lista;
 	}
 
 	
 	
-	private void validaSessionFactory() {
+	protected void validaSessionFactory() {
 		if (sessionFactory == null) {
 			sessionFactory = HibernateUtil.getSessionFactory();
 		}
@@ -228,7 +229,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	}
 
 	// roda instantaneamente o SQL no banco de dados
-	private void executeFlushSession() {
+	protected void executeFlushSession() {
 		sessionFactory.getCurrentSession().flush();
 	}
 
@@ -252,4 +253,6 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		T obj = (T) this.findUniqueByQueryDinamica(query.toString());
 		return obj;
 	}
+	
+	
 }

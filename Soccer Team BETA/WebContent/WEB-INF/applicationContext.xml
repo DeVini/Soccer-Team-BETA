@@ -21,6 +21,9 @@
 	
 	<context:component-scan base-package="br.com.project.geral.controller"/>   
 	<context:component-scan base-package="br.com.framework.hibernate.session"/>
+	<context:component-scan base-package="br.com.project.geral.controller"/>   
+	<context:component-scan base-package="br.com.project.model"/>
+	<context:component-scan base-package="br.com.project.filter"/>      
 	<context:component-scan base-package="br.com.srv.interfaces"/>
 	<context:component-scan base-package="br.com.srv.implementacao"/>
 	<context:component-scan base-package="br.com.repository.interfaces" />
@@ -118,13 +121,21 @@
 	
 
 	<!-- beans -->
+	<bean id="utilFramework" class="br.com.framework.utils.UtilFramework" scope="session"/> 
 	
 	<!-- Services -->
-	
+	<bean id="srvLogin" class="br.com.srv.implementacao.SrvLoginImpl"/>
+	<bean id="srvUsuario" class="br.com.srv.implementacao.SrvUsuarioImpl"/>
+	<bean id="srvTime" class="br.com.srv.implementacao.SrvTimeImpl"/> 
 	<!-- DAOs -->
+	<bean id="repositoryLogin" class="br.com.dao.implementacao.DaoLogin" />
+	<bean id="repositoryUsuario" class="br.com.dao.implementacao.DaoUsuario" />
+	<bean id="repositoryTime" class="br.com.dao.implementacao.DaoTime"/> 
 
 	<!-- Controllers -->
-	
-	
+	<bean id="sessionController" class="br.com.project.geral.controller.SessionControllerImpl" scope="singleton"/>
+	<bean id="usuarioController" class="br.com.project.geral.controller.UsuarioController" scope="singleton"/>
+	<bean id="timeController" class="br.com.project.geral.controller.TimeController" scope="singleton"/>
+	<bean id="controller" name="controller" class="br.com.framework.controller.crud.Controller" scope="singleton"/>
 	
 	</beans>

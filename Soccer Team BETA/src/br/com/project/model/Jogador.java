@@ -47,7 +47,7 @@ public class Jogador implements Serializable{
 	private String nome;
 	@IdentificaCampoPesquisa(campoConsulta = "cpf" , descricaoCampo = "CPF")
 	@Column(nullable = false, length = 11)
-	private long cpf;
+	private String rg;
 	@IdentificaCampoPesquisa(campoConsulta = "dtNascimento" , descricaoCampo = "Data de Nascimento")
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
@@ -164,12 +164,12 @@ public class Jogador implements Serializable{
 		this.nome = nome;
 	}
 
-	public long getCpf() {
-		return cpf;
+	public String getCpf() {
+		return rg;
 	}
 
-	public void setCpf(long cpf) {
-		this.cpf = cpf;
+	public void setCpf(String rg) {
+		this.rg = rg;
 	}
 
 	public Date getDtNascimento() {

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	
+	<title><ui:insert name="titulo">SoccerTeam</ui:insert></title>
+
+	
+	<h:outputStylesheet name="estilo.css" library="css" />
+	<h:outputScript name="scripty.js" library="javascript" />
+	
+	
+
+</h:head>
+
+<h:body>
+		<ui:include src="/templates/barraProgresso.xhtml" />
+		
+	<h:form id="formCadastro" prependId="false"  >
+			<div id="msgError">
+				<p:growl id="msg" showDetail="false" sticky="true" redisplay="true"
+					autoUpdate="true" life="500" />
+				<p:tooltip id="tooTipFocus" globalSelector="a, :input, :button"
+					showEvent="focus" hideEvent="blur" />
+			</div>
+			
+		<c:set var="isCadastro" value="true" scope="view"/>
+		<p:panel header="Cadastrar Usuario e Time" id="panelCadastro">
+			<h:panelGrid id="gridTime" columns="3">
+				
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="nomeTime" value="Nome do Time*:" id="labelTime" />
+					<p:inputText id="nomeTime" required="true" styleClass="styleInputNome" maxlength="100"  requiredMessage="Informe o nome do Time!" value="#{timeUsuarioBeanView.time.nome}"/>
+					<h:outputLabel value="" />
+					<h:outputLabel for="username" value="Username*:" id="labelUsername" />
+					<p:inputText id="username" required="true" requiredMessage="Informe o nome de Usuario!" value="#{timeUsuarioBeanView.usuario.username}"/>
+					<h:outputLabel value="" />
+					<h:outputLabel for="password" value="Password*:" id="labelPassword" />
+					<p:password  id="password" required="true" requiredMessage="Informe uma Senha!" value="#{timeUsuarioBeanView.usuario.password}" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="passwordConfirmar" value="Confirmar Password*:" id="labelPasswordConf" />
+					<p:password  id="passwordConf"  required="true" requiredMessage="Confirme a Senha!"  value="#{timeUsuarioBeanView.passwordConf}" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="data" value="Data de Fundação*:" id="labelData" />
+					<p:inputMask id="date" value="#{timeUsuarioBeanView.data}" mask="99/99/9999" required="true" requiredMessage="Informe a data de fundação do Time" >
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+					</p:inputMask>
+					<h:outputLabel value="" />
+					<h:outputLabel for="email" value="Email*:" id="labelEmail" />
+					<p:inputText id="email" value="#{timeUsuarioBeanView.usuario.email}" required="true" requiredMessage="Informe o email do Usuario"/>
+					<h:outputLabel value="" />
+					<h:outputLabel for="campo" value="Campo:" id="labelCampo" />
+					<p:inputText id="campo" value="#{timeUsuarioBeanView.time.mandoDeCampo}"/>
+					<h:outputLabel value="" />
+					<h:outputLabel for="treino" value="Local de Treino:" id="labelTreino" />
+					<p:inputText id="treino" value="#{timeUsuarioBeanView.time.localTreino}"/>
+			      		
+			</h:panelGrid>
+		</p:panel>
+		
+		<p:commandButton value="Cadastrar" immediate="false" ajax="true" action="#{timeUsuarioBeanView.cadastrarTime}" />
+		<p:button id="login" value="Login" immediate="false" ajax="false"  href="login.jsf" />
+		
+		
+	</h:form>
+		
+
+</h:body>
+
+	
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:util="http://java.sun.com/jsf/composite/componentes"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<ui:composition template="/templates/templatePrincipal.xhtml">
+	
+		<ui:define name="corpo">
+		
+				<h:form enctype="multipart/form-data" id="formCadastro" prependId="false"  >
+			
+					<c:set var="isCadastro" value="true" scope="view"/>
+					<p:panel header="Meus dados de acesso" id="panelCadastro">
+						<h:panelGrid id="gridTime" columns="3">
+						
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="tipo" value="Tipo de acesso:" id="labelTipo" />
+					<h:outputLabel id="tipo"  value="#{timeUsuarioBeanView.userLogadoSession.permissao.toString()}" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="username" value="Username*:" id="labelUsername" />
+					<p:inputText id="username" required="true" requiredMessage="Informe o nome de Usuario!" value="#{timeUsuarioBeanView.userLogadoSession.username}" disabled="true"/>
+					<h:outputLabel value="" />
+					<h:outputLabel for="password" value="Password*:" id="labelPassword" />
+					<p:password  id="password" required="true" requiredMessage="Informe uma Senha!" value="#{timeUsuarioBeanView.userLogadoSession.password}" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="passwordConf" value="Confirmar Password*:" id="labelPasswordConf" />
+					<p:password  id="passwordConf"  required="true" requiredMessage="Confirme a Senha!"  value="#{timeUsuarioBeanView.passwordConf}" />
+					<h:outputLabel value="" />
+					<h:outputLabel for="email" value="Email*:" id="labelEmail" />
+					<p:inputText id="email" value="#{timeUsuarioBeanView.userLogadoSession.email}" required="true" requiredMessage="Informe o email do Usuario"/>
+					
+
+			      		
+			</h:panelGrid>
+		</p:panel>
+		
+		<util:botoesCrud managedBeanView="#{timeUsuarioBeanView}"
+					botaoNovo = "false"
+					botaoSalvar = "#{contextBean.possuiAcesso('ADMIN','GERENTE','USER','COMISSAO_TECNICA')}"
+					botaoAtualizar="false"
+					botaoExcluir="false"
+					
+					/>
+	
+	</h:form>
+		
+			
+			
+		</ui:define>
+	</ui:composition>
+</html>

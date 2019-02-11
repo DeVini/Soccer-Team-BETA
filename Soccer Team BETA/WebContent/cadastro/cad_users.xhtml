@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/componentes"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+<ui:composition template="/templates/templatePrincipal.xhtml">
+
+	<ui:define name="corpo">
+		<sec:ifAnyGranted roles="ADMIN">
+		
+		
+				
+			
+				<h:form id="formCadastro" prependId="false">
+ 
+ 				<c:set var="isCadastro" value="true" scope="view" />
+				<p:panel header="Dados de usuarios" id="panelCadastro">
+					<h:panelGrid id="gridTime" columns="3">
+
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="" />
+						<h:outputLabel for="username" value="Username*:"
+							id="labelUsername" />
+						<p:inputText id="username" name="username" required="true"
+							requiredMessage="Informe o nome de Usuario!" disabled="false"
+							value="#{usuarioBeanView.usuarioSelecionado.username}"
+					
+							 >
+							<!--   <f:validator validatorId="usernameValidator" />-->
+							 </p:inputText>
+
+						
+						
+							<h:outputLabel value="" />
+							<h:outputLabel for="password" value="Password*:"
+								id="labelPassword" />
+							<p:password id="password" required="#{usuarioBeanView.usuarioSelecionado.id_Usuario > 0}"
+								disabled="#{usuarioBeanView.usuarioSelecionado.id_Usuario > 0}"
+								requiredMessage="Informe uma Senha!"
+								value="#{usuarioBeanView.usuarioSelecionado.password}" />
+
+
+							<h:outputLabel value="" />
+							<h:outputLabel for="passwordConf" value="Confirmar Password*:"
+								id="labelPasswordConf" />
+							<p:password id="passwordConf" required="#{usuarioBeanView.usuarioSelecionado.id_Usuario > 0}" 
+								disabled="#{usuarioBeanView.usuarioSelecionado.id_Usuario  > 0}"
+								requiredMessage="Confirme a Senha!"
+								value="#{usuarioBeanView.passwordConf}" />
+						
+						
+						<h:outputLabel value="" />
+						<h:outputLabel for="email" value="Email*:" id="labelEmail" />
+						<p:inputText id="email" required="#{usuarioBeanView.usuarioSelecionado.password > 0}"
+							requiredMessage="Informe o email do Usuario!" disabled="#{usuarioBeanView.usuarioSelecionado.id_Usuario > 0}"
+							value="#{usuarioBeanView.usuarioSelecionado.email}"  />
+						<h:outputLabel value="" />
+						<p:outputLabel for="acesso" value="Nivel de Acesso:" />
+						<p:selectOneMenu id="acesso"
+							value="#{usuarioBeanView.usuarioSelecionado.permissao}"
+							required="true" style="width:200px;"
+							requiredMessage="Informe o Nivel de Acesso do Usuario!">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems value="#{usuarioBeanView.permissoesList}" />
+						</p:selectOneMenu>
+
+
+
+					</h:panelGrid>
+				</p:panel>
+				
+			
+			
+				<util:botoesCrud managedBeanView="#{usuarioBeanView}"
+			 
+					botaoNovo = "#{contextBean.possuiAcesso('ADMIN')}"
+					botaoSalvar = "#{contextBean.possuiAcesso('ADMIN')}"
+					botaoAtualizar="false"
+					botaoExcluir="false"
+					
+					/>
+			</h:form>
+			
+			<div class="espacoBranco" />
+			
+			<p:dataTable id="tableResult" value="#{usuarioBeanView.list}"
+				var="objeto" emptyMessage="Não existe valores para exibição."
+				rows="10"
+				paginator="true" paginatorPosition="bottom"
+				paginatorTemplate=" {FirstPageLink}
+									{PreviousPageLink} {PageLinks}
+									{NextPageLink} {LastPageLink}
+									{RowsPerPageDropdown}">
+									
+			  <ui:include src="/resources/componentes/colunasDataTableUsuario.xhtml"/>
+			
+			</p:dataTable>
+			
+			
+		</sec:ifAnyGranted>
+	</ui:define>
+</ui:composition>
+</html>

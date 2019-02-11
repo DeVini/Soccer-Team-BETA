@@ -1,6 +1,8 @@
 package br.com.project.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,25 +15,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.envers.Audited;
+
 import br.com.project.annotation.IdentificaCampoPesquisa;
 import br.com.project.model.enums.Permissao;
 
 @Audited
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = {
+        @UniqueConstraint(name = "uniques", columnNames = {"username", "email"})
+})
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@IdentificaCampoPesquisa(campoConsulta = "id" , descricaoCampo = "Código")
+	@IdentificaCampoPesquisa(campoConsulta = "id_Usuario" , descricaoCampo = "Código")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_Usuario")
-	private long id;
+	private long id_Usuario;
 	@IdentificaCampoPesquisa(campoConsulta = "username" , descricaoCampo = "Username", principal = 1)
 	@Column(nullable = false, length = 15, unique = true)
+	
 	private String username;
 	@Column(nullable = false)
 	private String password;
@@ -42,6 +51,9 @@ public class Usuario implements Serializable{
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Permissao permissao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date ultimoacesso;
 
 	@Basic
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -61,12 +73,12 @@ public class Usuario implements Serializable{
 		this.versionNum = versionNum;
 	}
 
-	public long getId() {
-		return id;
+	public long getId_Usuario() {
+		return id_Usuario;
 	}
-
-	public void setId(long id) {
-		this.id = id;
+	
+	public void setId_Usuario(long id_Usuario) {
+		this.id_Usuario = id_Usuario;
 	}
 
 	public String getUsername() {
@@ -82,15 +94,19 @@ public class Usuario implements Serializable{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+	
+		
+			this.password = password;
+		
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email){
+
+			this.email = email;
 	}
 
 	public Permissao getPermissao() {
@@ -108,13 +124,21 @@ public class Usuario implements Serializable{
 	public void setTime(Time time) {
 		this.time = time;
 	}
+	
+	public Date getUltimoacesso() {
+		return ultimoacesso;
+	}
+	
+	public void setUltimoacesso(Date ultimoacesso) {
+		this.ultimoacesso = ultimoacesso;
+	}
 
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (id_Usuario ^ (id_Usuario >>> 32));
 		return result;
 	}
 
@@ -127,7 +151,7 @@ public class Usuario implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (id != other.id)
+		if (id_Usuario != other.id_Usuario)
 			return false;
 		return true;
 	}	

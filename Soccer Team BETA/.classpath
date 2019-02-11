@@ -66,13 +66,11 @@
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/poi-ooxml-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/poi-scratchpad-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/primefaces-4.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/qrcode.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/redmond-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/shared-bouncycastle-reduced-0.9.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/slf4j-simple-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/smoothness-1.0.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/spring-aop-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/spring-asm-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/spring-beans-3.0.5.RELEASE.jar"/>
@@ -94,5 +92,16 @@
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/start-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/taglib-core-0.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nyroc/git/Soccer-Team-BETA/Soccer Team BETA/WebContent/WEB-INF/lib/xmlbeans-1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/javamail1_4_7/javamail-1.4.7/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/javamail1_4_7.zip"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/cruze-1.0.10.jar"/>
+	<classpathentry kind="lib" path="D:/Cursos/jsf/meuProjeto/WebContent/WEB-INF/lib/cupertino-1.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/primefaces-6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/commons-digester3-3.2-bin/commons-digester3-3.2/commons-digester3-3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/commons-digester3-3.2-bin/commons-digester3-3.2/commons-digester3-3.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/commons-digester3-3.2-bin/commons-digester3-3.2/commons-digester3-3.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/commons-digester3-3.2-bin/commons-digester3-3.2/commons-digester3-3.2-with-deps.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/xercesImpl-2.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nyroc/Downloads/JasperReport-0.1-javadoc.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

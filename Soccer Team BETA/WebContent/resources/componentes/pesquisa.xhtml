@@ -1,0 +1,89 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/componentes"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+
+	
+	<h:form id="formPesquisa" prependId="false">
+	
+			<composite:interface displayName="pesquisa" name="pesquisa">
+				<composite:attribute name="managedBeanView" required="true"/>
+				<composite:attribute name="ocultaNovo" required="true"/>
+				<composite:attribute name="nomePesquisa" required="true"/>
+				<composite:attribute name="colunasGridDataTableList" required="true"/>
+			</composite:interface>
+			
+			<composite:implementation>
+				<c:set var="isCadastro" value="false" scope="view"/>
+				
+						 <p:commandButton value="Novo" id="buttonNovoRegistro" action="#{cc.attrs.managedBeanView.novo}" 
+						 rendered="#{cc.attrs.ocultaNovo}" immediate="true"/>
+						 <br />
+						 <br />
+						 <p:panel id="panelPesquisa" header="#{cc.attrs.nomePesquisa}" >
+						 <h:panelGrid  columns="2">
+							 	<h:outputLabel for="campo"  id="labelCampo" value="Campo: " />
+							 	<p:selectOneMenu style="width: 150px;" id="campo" 
+							 	onchange=""
+							 	value="#{cc.attrs.managedBeanView.objetoCampoConsultaSelecionado}">
+							 	
+							 		<f:selectItems id="itensCampoPesquisa" var="campoPesquisaSelecionado" 
+							 			itemLabel="#{campoPesquisaSelecionado.descricao}"
+							 			itemValue="#{campoPesquisaSelecionado.tipoClass}"
+							 			value="#{cc.attrs.managedBeanView.listaCampoPesquisa}"
+							 		/>
+							 		
+							 	</p:selectOneMenu>
+							 	
+							 	<h:outputLabel id="labelCondicao" for="condicao" value="Onde :"  />
+							 	<p:selectOneMenu  id="condicao" style="width: 150px;"
+							 	 value="#{cc.attrs.managedBeanView.condicao}">
+							 	 	<f:selectItems id="itensCondicao" value="#{cc.attrs.managedBeanView.listaCondicaoPesquisa}"/>
+							 	 </p:selectOneMenu>
+							 	
+							 	<p:inputText id="valorPesquisa" immediate="false" value="#{cc.attrs.managedBeanView.valorPesquisa}"/>
+							 	
+							 	<p:commandButton id="buttonPesquisar" ajax="true" value="Filtrar"
+							 	  actionListener="#{cc.attrs.managedBeanView.consultarEntidade}" update="tableResult">
+							 		
+							 	</p:commandButton>
+							 	
+						 	</h:panelGrid>
+						 </p:panel>
+						 <p:spacer/>
+						 	
+						 	
+						 	<br />
+						 	
+							 <util:menuImpressao pdf="true" 
+							html="true"
+						 	managedBeanView="#{cc.attrs.managedBeanView}" 
+						 	excel="true" 
+						 	ods="true"/>
+				 	
+						 <p:dataTable id="tableResult" rendered="true"  
+						 value="#{cc.attrs.managedBeanView.lazy}" var="objeto" rows="5"
+						 widgetVar="tableResult" 
+						 paginatorPosition="bottom"
+						 lazy="true" paginator="true" emptyMessage="Não existe valores para exibição."
+						 paginatorTemplate=" {FirstPageLink}
+									{PreviousPageLink} {PageLinks}
+									{NextPageLink} {LastPageLink}
+									{RowsPerPageDropdown}">
+									
+									<ui:include src="#{cc.attrs.colunasGridDataTableList}" />
+									
+						 
+						 </p:dataTable>
+				
+			</composite:implementation>
+			
+	</h:form>	
+</html>

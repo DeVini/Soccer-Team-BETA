@@ -45,7 +45,7 @@ public class FilterOpenSessionInView extends DelegatingFilterProxy implements Se
 			Usuario usuarioLogadoSessao = (Usuario) session.getAttribute("userLogadoSessao");
 			
 			if(usuarioLogadoSessao != null){
-				UtilFramework.getThreadLocal().set(usuarioLogadoSessao.getId());
+				UtilFramework.getThreadLocal().set(usuarioLogadoSessao.getId_Usuario());
 			}
 			
 			sf.getCurrentSession().beginTransaction();

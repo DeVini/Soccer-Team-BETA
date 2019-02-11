@@ -37,7 +37,7 @@
 		
 		<!--  Valida ou exporta automaticamente o esquema DDL para o banco de dados quando ele SessionFactoryé criado. Com create-drop,
 		 o esquema do banco de dados será descartado quando o SessionFactory for fechado explicitamente.-->
-		<property name="hibernate.hbm2ddl.auto" >create</property>
+		<property name="hibernate.hbm2ddl.auto" >update</property>
 		<!--  -->
 		<property name="hibernate.show_sql">true</property>
 		<!--  -->

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><ui:insert name="titulo">SoccerTeam</ui:insert></title>
+
+	<h:outputScript name="jquery.js" library="primefaces/jquery" />
+	<h:outputStylesheet name="estilo.css" library="css" />
+	<h:outputScript name="scripty.js" library="javascript" />
+	
+	
+
+</h:head>
+<h:body styleClass="fundo">
+
+	<div id="">
+		<br/>
+		
+		<h:panelGroup rendered="#{!empty param.login_error}">
+					
+					
+					<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Maximum sessions of 1 for this principal exceeded'}" >
+						<span class="estiloSpan">
+						Você está logado em outra sessão
+						</span>
+				
+					
+						<h:commandButton value="Encerrar" style="height:40px; widht:100px; background:#CDCDC1; border: 1px;"
+						onclick="invalidarSession('#{request.contextPath}','/publico/invalidateSession');" />
+					
+					</h:outputLabel>
+		</h:panelGroup>
+		
+		<br/>
+		
+		<form id="formulario" method="post" name="formulario" onsubmit="return validarSenhaLogin();" 
+		action="#{request.contextPath}/j_spring_security_check">
+			
+			<div class="login-box">
+					<h:panelGroup rendered="#{!empty param.login_error}">
+						<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}" >
+							<span class="estiloSpan">
+							Permissão Negada, login ou senha incorretos.
+					</span>
+						</h:outputLabel>
+					</h:panelGroup>
+					
+					<div class="textbox">
+						<i class="fa fa-user" ></i>
+						<input type="text" class="inp" value="" placeholder="Username" name="j_username"  id="j_username"/>
+					</div>
+					
+					<div class="textbox">
+						<i class="fa fa-lock"></i>
+						<input  type="password" class="inp" value="" placeholder="Password" name="j_password" id="j_password"/>
+					</div>
+					<button type="submit" value="Entrar" class="btn" id="buttonLogin">
+						Entrar
+					</button>
+					<button type="button" value="Cadastrar" class="btn" id="buttonCadastrar" onclick="javascript:redirecionarPagina('#{request.contextPath}','/publico/cadastrar');">
+						Cadastrar
+					</button>
+					
+					<br/>
+					<h:panelGroup rendered="#{!empty param.login_error}">
+						<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}" >
+							<span class="estiloSpan">
+							Esqueceu a Senha?
+							</span>
+						</h:outputLabel>
+					</h:panelGroup>
+			</div>
+		</form>
+
+	</div>
+	<script>
+		$('#j_username').focus();
+	</script>
+</h:body>
+</html>
